@@ -20,7 +20,13 @@ mongoose.connect(URL,
         console.log("MongoDB Error is "+err);
     }
     console.log("DB Connected Successfully!");
-})
+});
+
+mongoose.connection.on("error", err => {
+
+    console.log("err", err)
+  
+  })
 
 const port = process.env.PORT || 4000;
 app.listen(port,()=>{
