@@ -11,11 +11,13 @@ app.use(express.json());
 app.use(skill)
 
 //DB Connection
-mongoose.connect(process.env.MONGODB,()=>{
+const env = process.env.MONGODB.toString();
+mongoose.connect(env,{ useNewUrlParser: true },()=>{
     console.log("DB Connected Successfully!");
 })
 
 const port = process.env.port || 4000;
 app.listen(port,()=>{
     console.log("Server Started Successfully!");
+    console.log(process.env.MONGODB)
 })
