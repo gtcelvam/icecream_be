@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(skill)
 
 //DB Connection
-const env = process.env.MONGODB.toString();
+const env = process.env.MONGODB;
 mongoose.connect(env,{ useNewUrlParser: true },()=>{
     console.log("DB Connected Successfully!");
 })
