@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(skill)
 
 //DB Connection
-const URL = process.env.MONGODB;
+var URL = process.env.Access_Url;
 mongoose.connect(URL,
     {useNewUrlParser: true,
     useUnifiedTopology: true},
