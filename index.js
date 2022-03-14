@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const skill = require('./model/skill');
 const mongoose = require('mongoose');
-const dotEnv = require('dotenv').config();
+require('dotenv').config();
 
 
 app.use(express.json());
@@ -12,7 +12,7 @@ app.use(skill)
 
 //DB Connection
 const URL = process.env.MONGODB;
-mongoose.connect(URL,
+mongoose.connect('mongodb+srv://thselvan:gtcelvaM2005@ts-admin.0c5cq.mongodb.net/ts_admin?retryWrites=true&w=majority',
     {useNewUrlParser: true,
     useUnifiedTopology: true},
     ()=>{
@@ -22,5 +22,4 @@ mongoose.connect(URL,
 const port = process.env.port || 4000;
 app.listen(port,()=>{
     console.log("Server Started Successfully!");
-    console.log(process.env.MONGODB)
 })
