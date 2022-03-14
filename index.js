@@ -15,7 +15,10 @@ var URL = process.env.Access_Url;
 mongoose.connect(URL,
     {useNewUrlParser: true,
     useUnifiedTopology: true},
-    ()=>{
+    (err)=>{
+    if(err){
+        console.log("MongoDB Error is "+err);
+    }
     console.log("DB Connected Successfully!");
 })
 
