@@ -11,8 +11,11 @@ app.use(express.json());
 app.use(skill)
 
 //DB Connection
-const env = process.env.MONGODB;
-mongoose.connect(env,{ useNewUrlParser: true },()=>{
+const URL = process.env.MONGODB;
+mongoose.connect(URL,
+    {useNewUrlParser: true,
+    useUnifiedTopology: true},
+    ()=>{
     console.log("DB Connected Successfully!");
 })
 
