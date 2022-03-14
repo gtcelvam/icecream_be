@@ -12,7 +12,7 @@ app.use(skill)
 
 //DB Connection
 const URL = process.env.MONGODB;
-mongoose.connect('mongodb+srv://thselvan:gtcelvaM2005@ts-admin.0c5cq.mongodb.net/ts_admin?retryWrites=true&w=majority',
+mongoose.connect(URL,
     {useNewUrlParser: true,
     useUnifiedTopology: true},
     ()=>{
