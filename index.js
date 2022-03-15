@@ -3,26 +3,15 @@ const app = express();
 const skill = require('./model/skill');
 const mongoose = require('mongoose');
 const corsMiddleWare = require('./middleware/cors');
-const cors = require('cors');
 require('dotenv').config();
 
-
+//Cors - access-control-allow-origin
+app.use(corsMiddleWare);
+//Body Parser
 app.use(express.json());
 
 //Routers
 app.use(skill)
-
-//CORS HEADER
-/* app.all(function(req, res, next) {
-    // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-app.options('*',corsMiddleWare); */
-app.use(corsMiddleWare);
-
 
 //DB Connection
 var URL = process.env.Access_Url;
