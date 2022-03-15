@@ -10,6 +10,15 @@ app.use(express.json());
 //Routers
 app.use(skill)
 
+//CORS HEADER
+app.use(function(req, res, next) {
+    // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 //DB Connection
 var URL = process.env.Access_Url;
 mongoose.connect(URL,
