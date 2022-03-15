@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const skill = require('./model/skill');
 const mongoose = require('mongoose');
+const corsMiddleWare = require('./middleware/cors');
 require('dotenv').config();
 
 
@@ -18,6 +19,9 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+app.options('*',corsMiddleWare);
+app.use(corsMiddleWare);
+
 
 //DB Connection
 var URL = process.env.Access_Url;
