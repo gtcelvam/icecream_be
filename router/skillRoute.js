@@ -6,9 +6,23 @@ skillRoute.get('/',(req,res)=>{
     skillSchema.find({},{_id:0,__v:0}).then(data=>{
         res.send(data);
     })
-})
+});
+
+skillRoute.get('/admin',(req,res)=>{
+    skillSchema.find({}).then(data=>{
+        res.send(data);
+    })
+});
 
 skillRoute.get('/:id',(req,res)=>{
+    let id = req.params.id;
+    skillSchema.findById({_id:id},(err,data)=>{
+        if(err) res.status(404).json({status:false,message:err})
+        data ? res.status(200).json(data) : res.status(404).json({status:false,message:"No Data Found!"});
+    });
+})
+
+skillRoute.get('/:id/admin',(req,res)=>{
     let id = req.params.id;
     skillSchema.findById({_id:id},{_id:0,__v:0},(err,data)=>{
         if(err) res.status(404).json({status:false,message:err})
