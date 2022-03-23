@@ -2,7 +2,6 @@ const express = require('express');
 const homeImgRoute = express.Router();
 const homeBgSchema = require('../schema/homeBgSchema');
 const multer = require('multer');
-const http = require('http');
 
 const storage = multer.diskStorage({
     destination : (req,file,cb)=>{
@@ -36,7 +35,7 @@ homeImgRoute.post('/',upload.single('file'),(req,res)=>{
                 name : req.body.name,
                 imgUrl : req.file.path,
                 active:req.body.active
-            });
+            });//Check Whether we can use save().then() here
             data.save().then((err,file)=>{
                 if(err) res.status(404).json(err)
                 res.status(200).json(file)
@@ -44,11 +43,11 @@ homeImgRoute.post('/',upload.single('file'),(req,res)=>{
         });
 });
 
-homeImgRoute.get('/',(req,res)=>{
-    homeBgSchema.findOne({active : true}).then((err,data)=>{
+homeImgRoute.get('/image',(req,res)=>{
+    homeBgSchema.findOne({active : true},(err,data)=>{
         if(err) res.status(404).json(err)
-        res.status(200).json(data)
-    })
+        res.status(200).json(data);
+    });
 })
 
 module.exports = homeImgRoute
