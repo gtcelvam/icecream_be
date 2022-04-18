@@ -5,12 +5,14 @@ const iceCreamData = require('../data/iceCreamData')
 
 iceCreamRoute.get('/',(req,res)=>{
     iceCreamSchema.find({},{__v:0}).then(data=>{
+        res.header("Access-Control-Allow-Origin", "*");
         res.send(data);
     })
 });
 iceCreamRoute.get('/:category',(req,res)=>{
     const category = req.params.category;
     iceCreamSchema.find({category : category},{__v:0}).then(data=>{
+        res.header("Access-Control-Allow-Origin", "*");
         data.length === 0 ? res.status(500).json('No data found') : res.status(200).send(data);
     }).catch(err => res.status(404).json(err))
 });
