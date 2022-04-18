@@ -1,7 +1,8 @@
 const cors = require('cors');
 
 const corsOptions = {
-    origin : '*',
+    origin : ['http://localhost:3000'],
+    credentials : true
 }
 
 module.exports = cors(corsOptions);
