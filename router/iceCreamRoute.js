@@ -28,6 +28,7 @@ iceCreamRoute.post('/',async(req,res)=>{
     });
     try {
         const result = await data.save();
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).json({status:true,message:"Data Added Successfully!"});
     } catch (error) {
         res.status(404).json({status:false,message:error});
@@ -47,6 +48,7 @@ iceCreamRoute.patch('/:id',(req,res)=>{
     let id = req.params.id;
     let data = req.body;
     iceCreamSchema.findByIdAndUpdate({_id :id},data,{new: true,upsert:true},(err,data)=>{
+        res.header("Access-Control-Allow-Origin", "*");
         if(err) res.status(404).json({status:false,message:err})
         data ? res.status(200).json({status:true,message:'Date Updated Successfully!'}) : res.status(404).json({status:false,message:"No Data Found!"});
     })
@@ -55,6 +57,7 @@ iceCreamRoute.patch('/:id',(req,res)=>{
 iceCreamRoute.delete('/:id',(req,res)=>{
     const id = req.params.id
     iceCreamSchema.findByIdAndRemove({_id : id},(err,data)=>{
+        res.header("Access-Control-Allow-Origin", "*");
         if(err) res.status(404).json({status:false,message:err})
         data ? res.status(200).json({status:true,message:"Data Deleted Successfully!"}) : res.status(404).json({status:false,message:"No Data Found!"});
     });
