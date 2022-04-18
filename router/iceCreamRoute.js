@@ -1,7 +1,6 @@
 const express = require('express');
 const iceCreamRoute = express.Router();
 const iceCreamSchema = require('../schema/iceCreamSchema');
-const iceCreamData = require('../data/iceCreamData')
 
 iceCreamRoute.get('/',(req,res)=>{
     iceCreamSchema.find({},{__v:0}).then(data=>{
